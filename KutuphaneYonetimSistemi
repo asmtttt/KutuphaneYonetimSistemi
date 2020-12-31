@@ -1,0 +1,302 @@
+
+# VERİLERİN VERİ YAPISINDA KAYITLI TUTULMASI
+
+# Personel verileri Dictionary veri yapısında tutuluyor.
+personel_bilgileri = {"mehmet"      : "456"}
+
+# Kullanıcı verileri Dictionary veri yapısında tutuluyor.
+kullanici_bilgileri = {"samet"      : "123"}
+
+
+# Kitap verileri Liste veri yapısında tutuluyor.
+kitaplar = ["nutuk","safahat","osmancik","muhafiz","teskilat","eylul"]
+
+# --------------------------------------------------------------------------------
+
+
+# PROGRAMIN ALT FONKSİYONLARI
+
+
+# program açıldığındaki kullanıcı ve personellerin
+# görebileceği ana menü tasarlanıyor.
+
+def menu():
+
+  tercih = int(input("""
+                     [1] Kullanici Girisi
+                     [2] Personel  Girisi """))
+
+  if tercih == 1 or tercih == 2:
+    return tercih
+
+
+
+
+# kullanıcının sisteme giriş yapması için input girdileri alınıyor
+# sistemdeki kayıtlı veriler ile kıyaslanıp giriş yapılıyor.
+
+def kullanici_giris():
+
+  kullanici_ad_gir = input("kullanici adinizi giriniz :")
+  parola_gir = input("sifrenizi giriniz :")
+
+  if kullanici_ad_gir in kullanici_bilgileri:
+
+    if kullanici_bilgileri[kullanici_ad_gir] == parola_gir:
+      print("sisteme girisiniz yapildi hosgeldiniz...")
+
+    else:
+      print("parolaniz hatali...")
+      exit()
+
+  else:
+    print("sistemde bu kayitta bir kullanici bulunamadi.")
+    exit()
+
+
+
+
+# personelin sisteme giriş yapması için input girdileri alınıyor
+# sistemdeki kayıtlı veriler ile kıyaslanıp giriş yapılıyor.
+
+def personel_giris():
+  personel_ad_gir = input("kullanici adinizi giriniz :")
+  parola_gir = input("sifrenizi giriniz :")
+
+  if personel_ad_gir in personel_bilgileri:
+
+    if personel_bilgileri[personel_ad_gir] == parola_gir:
+      print("sisteme girisiniz yapildi hosgeldiniz...")
+
+    else:
+      print("parolaniz hatali...")
+      exit()
+
+  else:
+    print("sistemde bu kayitta bir personel bulunamadi.")
+    exit()
+
+
+
+
+# kullanıcının sisteme girdikten sonra yapabileceği
+# kitap arama işlemi bölümünün tasarlanması
+
+def kullanici_kitap_arama():
+  aranan_kitap = input("aradiginiz kitabin ismini giriniz : ")
+
+  if aranan_kitap in kitaplar:
+    print("kitap sistemde mevcuttur")
+    print(aranan_kitap)
+
+  else:
+    print("sistemde bu isimde kayitli bir kitap bulunamadi.")
+    exit()
+
+
+
+
+# kullanıcının sisteme girdikten sonra yapabileceği
+# kitap listeleme bölümünün tasarlanması
+
+def kullanici_kitap_listeleme():
+  print("Bu kisim veri tabani gerektirdiginden suan icin yapilmamistir.")
+
+
+
+# kullanıcının sisteme girdikten sonra yapabileceği
+# üyelik işlemlerinde hesabını silebileceği işlemin tasarımı
+
+def kullanici_uyelik_islemleri():
+  kullanici_ad_gir = input("kullanici adinizi giriniz :")
+  parola_gir = input("parolanizi giriniz :")
+
+  if kullanici_ad_gir in kullanici_bilgileri:
+    if kullanici_bilgileri[kullanici_ad_gir] == parola_gir :
+      kullanici_bilgileri.pop(kullanici_ad_gir)
+
+    else:
+     print("bilgileriniz eslesmedi")
+     kullanici_uyelik_islemleri()
+
+
+
+
+# personellerin kitap ekleme islemini yapabilecegi islemin tasariminin yapilmasi
+
+def personel_kitap_ekle():
+  kitap_bilgisi = input("eklemek istediginiz kitap adini giriniz :")
+  kitaplar.append(kitap_bilgisi)
+
+
+
+
+# personelin kitap silme islemini yapabilecegi islemin tasariminin yapilmasi
+
+def personel_kitap_sil():
+  kitap_bilgisi = input("silmek istediginiz kitap adini giriniz :")
+
+  if kitap_bilgisi in kitaplar:
+    kitaplar.remove(kitap_bilgisi)
+
+
+# personelin sistemde kayitli kitaplari listeleyebilecegi islemin tasarimin yapilmasi
+
+def personel_kitap_listele():
+  for i in kitaplar:
+    print(i)
+
+
+
+
+
+# personellerin kitap islemlerini gerceklestirebilecegi menunun tasariminin yapilmasi
+
+def personel_kitap_islemleri():
+  personel_kitap_islemler_secenekler = int(input("""
+                              [1] kitap ekle
+                              [2] kitap sil
+                              [3] kitap listele 
+                              [4] programi kapat """))
+
+
+  if personel_kitap_islemler_secenekler == 1:
+    personel_kitap_ekle()
+
+  if personel_kitap_islemler_secenekler == 2:
+    personel_kitap_sil()
+
+  if personel_kitap_islemler_secenekler == 3:
+    personel_kitap_listele()
+
+
+  else:
+    print("program kapatiliyor...")
+    exit()
+
+
+
+# personelin sisteme girdikten sonra yapabileceği
+# üyelik işlemlerinde hesabını silebileceği işlemin tasarımı
+
+def personel_uyelik_islemleri():
+  kullanici_ad_gir = input("kullanici adinizi giriniz :")
+  parola_gir = input("parolanizi giriniz :")
+
+  if kullanici_ad_gir in personel_bilgileri:
+    if personel_bilgileri[kullanici_ad_gir] == parola_gir :
+      personel_bilgileri.pop(kullanici_ad_gir)
+
+
+    else:
+     print("bilgileriniz eslesmedi")
+     personel_uyelik_islemleri()
+
+
+
+
+
+
+
+# kullanicinin yapabilecegi islemleri gorebilecegi menunun tasariminin yapilmasi
+def kullanici_menu():
+  menu_secenekler = int(input("""
+                          [1] Kitap Arama
+                          [2] Kitap Listelemek
+                          [3] Uyelik Islemleri
+                          [4] Programi Kapat """))
+
+  if menu_secenekler == 1:
+    kullanici_kitap_arama()
+    kullanici_menu()
+
+  if menu_secenekler == 2:
+    kullanici_kitap_listeleme()
+    kullanici_menu()
+
+
+  if menu_secenekler == 3:
+    kullanici_uyelik_islemleri()
+    kullanici_menu()
+
+  if menu_secenekler == 4:
+    print("program kapatiliyor...")
+    exit()
+
+  else:
+    kullanici_menu()
+
+
+
+
+
+
+
+
+
+# personelin yapabilecegi islemleri gorebilecegi menunun tasariminin yapilmasi
+def personel_menu():
+  menu_secenekler = int(input("""
+                          [1] Personel Kitap Islemleri
+                            - kitap ekle
+                            - kitap sil
+                            - kitap guncelle
+                            - kitap listele
+                            
+                          [2] Uyelik Islemleri
+                          [3] Programi Kapat """))
+
+  if menu_secenekler == 1:
+    personel_kitap_islemleri()
+    personel_menu()
+
+
+  if menu_secenekler == 2:
+    personel_uyelik_islemleri()
+    personel_menu()
+
+  if menu_secenekler == 3:
+    print("program kapatiliyor...")
+    exit()
+
+  else:
+    personel_menu()
+
+
+
+
+
+
+# --------------------------------------------------------------------------------
+
+
+# PROGRAMIN ANA FONKSİYONU
+# TÜM ALT FONKSİYONLAR ANA FONKSİYON ÜZERİNDE ÇALIŞTIRILIR.
+
+
+
+def program_calis():        # programin ana programi
+
+  if menu() == 1 :
+    kullanici_giris()
+
+    kullanici_menu()
+
+
+
+
+
+  if menu() == 2 :
+    personel_giris()
+
+    personel_menu()
+
+
+
+# --------------------------------------------------------------------------------
+
+
+print(program_calis())
+
+
+
